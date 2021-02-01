@@ -252,17 +252,16 @@ def run():
                         nifty = True
                         x=get_data('^NSEI')
                         dravs(x)
-                        
+                        time.sleep(schedule_interval)
                         print("running ", datetime.datetime.now(),positions)
                     except Exception as e:
                         print("Run error", e)
                 runcount = runcount + 1
         else:
             #print('     Waiting...', datetime.datetime.now())
-            time.sleep(1)
+            if datetime.datetime.now().minute%15 == 0:
+                time.sleep(900)
+            else:
+                time.sleep((datetime.datetime.now().minute%15 * 60)-datetime.datetime.now().second)
 
 run()
-#yy= np.where(np.logical_and(x['close'] > x['topbox'],x['STX'] =='up') ,x['close'],0)
-#for i in yy:
-#    if i != 0:
-#        print(i)
