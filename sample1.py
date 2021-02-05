@@ -250,8 +250,8 @@ def run():
                         nifty = True
                         x=get_data('^NSEI')
                         dravs(x)
-                        time.sleep(schedule_interval)
                         print("running ", datetime.datetime.now(),positions)
+                        time.sleep(schedule_interval)
                     except Exception as e:
                         print("Run error", e)
                 runcount = runcount + 1
