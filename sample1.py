@@ -18,14 +18,12 @@ import datetime
 
 TIMEFRAME = '15m'
 boxp = 7
-debug = 1
-mpyramid = 5
-buffer = 5 #0.0005*close
+buffer = 5 
 position = [False,False]
 nifty = False
 positions= [[],[]]
 ltp =0
-expiry_date= datetime.date(2021, 2, 4)
+expiry_date= datetime.date(2021, 2, 11)
 
 sas = AlphaTrade(login_id=config.login_id, password=config.password, twofa=config.twofa)
 
