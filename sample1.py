@@ -31,7 +31,7 @@ sas = AlphaTrade(login_id=config.login_id, password=config.password, twofa=confi
 
 
 
-#print("Script Start Time :: " + str(datetime.datetime.now()))
+print("Script Start Time :: " + str(datetime.datetime.now()))
 
 def SuperTrend(df, name,period = 10, multiplier=2, ohlc=['open', 'high', 'low', 'close','EMA_5']):
     #small variation from jignesh patel supertrend indicator
@@ -256,10 +256,10 @@ def run():
                         print("Run error", e)
                 runcount = runcount + 1
         else:
-            #print('     Waiting...', datetime.datetime.now())
+            print('     Waiting...', datetime.datetime.now())
             if datetime.datetime.now().minute%15 == 0:
                 time.sleep(900)
             else:
-                time.sleep((datetime.datetime.now().minute%15 * 60)-datetime.datetime.now().second)
+                time.sleep((15-datetime.datetime.now().minute%15 )*60-datetime.datetime.now().second)
 
 run()
