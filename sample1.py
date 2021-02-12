@@ -23,7 +23,7 @@ position = [False,False]
 nifty = False
 positions= [[],[]]
 ltp =0
-expiry_date= datetime.date(2021, 2, 11)
+expiry_date= datetime.date(2021, 2, 18)
 
 sas = AlphaTrade(login_id=config.login_id, password=config.password, twofa=config.twofa)
 
