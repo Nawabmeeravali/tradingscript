@@ -102,7 +102,7 @@ def get_data(symbol):
     df.rename(columns = {"5 period ATR":'ATR_' + str(5)}, inplace = True)
     df=pd.concat([df,TA.EMA(df,5)], axis=1)
     df.rename(columns = {"5 period EMA":'EMA_' + str(5)}, inplace = True)
-    df=pd.concat([df,TA.SAR(df)], axis=1)
+    df=pd.concat([df,TA.PSAR(df)], axis=1)
     df.rename(columns = {0:'psar' }, inplace = True)
     df=SuperTrend(df,'s')
     df=SuperTrend(df,'f',period=5,multiplier=1)
