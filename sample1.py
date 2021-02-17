@@ -161,7 +161,7 @@ def delay_sell():
     global positions
     global d_sell
     p=positions
-    print("squaring off positions")
+    print("selling options ")
     if d_sell[0] :
         for i in p[0]:
             sell_signal(i[1],75)
