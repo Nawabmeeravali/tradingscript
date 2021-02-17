@@ -22,6 +22,7 @@ buffer = 5
 position = [False,False]
 nifty = False
 positions= [[],[]]
+d_sell = [False,False]
 ltp =0
 expiry_date= datetime.date(2021, 2, 18)
 
@@ -119,6 +120,7 @@ def buy_zerbra():
     x= int(ltp/100)*100
     global positions
     global nifty
+    global d_sell
     if nifty:
         symbol= 'NIFTY'
         val =300
@@ -132,10 +134,12 @@ def buy_zerbra():
     y=(deep_call,atm_call)
     if nifty:
         positions[0].append(y)
+        d_sell[0]=True
     else:
         positions[1].append(y)
+        d_sell[1]=True
     buy_signal(deep_call,2*q)
-    sell_signal(atm_call,q)
+    #sell_signal(atm_call,q)
 
 def square_off(x):
     global positions
@@ -152,6 +156,20 @@ def square_off(x):
             buy_signal(i[1],25)
             sell_signal(i[0],50)
             positions[1].remove(i)
+
+def delay_sell():
+    global positions
+    global d_sell
+    p=positions
+    print("squaring off positions")
+    if d_sell[0] :
+        for i in p[0]:
+            sell_signal(i[1],75)
+        d_sell[0]=False
+    if d_sell[1]:
+        for i in p[1]:
+            sell_signal(i[1],25)
+        d_sell[1]= False
 
 def buy_signal(ins_scrip,q):
     global sas
@@ -190,6 +208,7 @@ def dravs(ohlc):
     global position
     global ltp 
     global nifty
+    delay_sell()
     ltp = ohlc['close'].values[-1]
     topbox , bottombox = ohlc['topbox'].values[-1]+buffer , ohlc['bottombox'].values[-1]-buffer
     if ohlc['close'].values[-1] > topbox and ohlc['close'].values[-3] < topbox:
