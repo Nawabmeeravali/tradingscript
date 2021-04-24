@@ -138,6 +138,7 @@ def buy_zerbra():
     buy_signal(deep_call,2*q)
     sell_signal(atm_call,q)
 
+
 def square_off(x):
     global positions
     p=positions
